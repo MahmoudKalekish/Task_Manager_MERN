@@ -44,7 +44,7 @@ export default tasksSlice.reducer;
 
 export const fetchTasks = (): AppThunk => async (dispatch: any) => {
   try {
-    const response = await fetch('http://localhost:5000/api/tasks');
+    const response = await fetch('https://tasks-1njw.onrender.com/api/tasks');
     const data = await response.json();
     dispatch(addTask(data));
   } catch (error) {

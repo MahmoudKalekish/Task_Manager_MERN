@@ -15,7 +15,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onRegisterSuccess, onLoginC
 
   const handleRegister = () => {
     const userData = { username, email, password };
-    axios.post('http://localhost:5000/api/auth/register', userData)
+    axios.post('https://tasks-1njw.onrender.com/api/auth/register', userData)
       .then(response => {
         const token = response.data.token;
         toast.success('User registered successfully');

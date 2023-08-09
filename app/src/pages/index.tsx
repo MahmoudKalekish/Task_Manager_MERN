@@ -34,7 +34,7 @@ const HomePage: React.FC = () => {
 
   const fetchTasks = () => {
     if (token) {
-      axios.get('http://localhost:5000/api/tasks', {
+      axios.get('https://tasks-1njw.onrender.com/api/tasks', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -70,7 +70,7 @@ const HomePage: React.FC = () => {
   };
 
   const handleAddTask = (newTask: Task) => {
-    axios.post('http://localhost:5000/api/tasks', newTask, {
+    axios.post('https://tasks-1njw.onrender.com/api/tasks', newTask, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -86,7 +86,7 @@ const HomePage: React.FC = () => {
   };
 
   const handleMarkCompleted = (taskId: string) => {
-    axios.put(`http://localhost:5000/api/tasks/${taskId}`, { isCompleted: true }, {
+    axios.put(`https://tasks-1njw.onrender.com/api/tasks/${taskId}`, { isCompleted: true }, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -102,7 +102,7 @@ const HomePage: React.FC = () => {
   };
 
   const handleDeleteTask = (taskId: string) => {
-    axios.delete(`http://localhost:5000/api/tasks/${taskId}`, {
+    axios.delete(`https://tasks-1njw.onrender.com/api/tasks/${taskId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
