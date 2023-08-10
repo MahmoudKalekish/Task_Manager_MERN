@@ -42,13 +42,13 @@ The application allows users to manage tasks by providing features for adding, e
    npm run start
 
   But no need to run the backend because it is deployed, so you can directly run the frontend.
-   ```Terminal
+      ```Terminal
       https://tasks-1njw.onrender.com
 
 
 
 
-### Frontend
+## Frontend
 
 1. Open a new terminal.
 
