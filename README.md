@@ -65,3 +65,21 @@ The application allows users to manage tasks by providing features for adding, e
    ```Terminal
    npm run dev
 
+
+# LoginForm
+![Screenshot from 2023-08-09 20-51-43](https://github.com/MahmoudKalekish/Task_Manager_MERN/assets/101974539/3d21abdb-083d-47b2-bcac-762bdb7f74b7)
+
+# RegisterForm
+![Screenshot from 2023-08-09 20-51-50](https://github.com/MahmoudKalekish/Task_Manager_MERN/assets/101974539/a5abdd91-3d94-41cc-aedc-3c09d799ef7a)
+
+# AddingTask:
+![Screenshot from 2023-08-10 11-47-46](https://github.com/MahmoudKalekish/Task_Manager_MERN/assets/101974539/69966a5c-ca2e-472b-aa36-2d9c33efe6a3)
+
+# Fetched Tasks:
+![Screenshot from 2023-08-10 11-51-41](https://github.com/MahmoudKalekish/Task_Manager_MERN/assets/101974539/3c82a61e-9444-4eab-94c1-2e3f6e7fa1a3)
+
+# EditForm:
+![Screenshot from 2023-08-10 11-51-56](https://github.com/MahmoudKalekish/Task_Manager_MERN/assets/101974539/e636243c-6dd7-4f13-a5fa-b32f15b80fbb)
+
+
+
