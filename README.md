@@ -31,7 +31,7 @@ The application allows users to manage tasks by providing features for adding, e
 
 2. Navigate to the backend directory:
    ```Terminal
-   cd task-management-app/backend
+   cd backend
 
 3. Install dependencies:
    ```Terminal
@@ -43,7 +43,7 @@ The application allows users to manage tasks by providing features for adding, e
 
  ### But no need to run the backend because it is deployed, so you can directly run the frontend.
    ```Terminal
-https://tasks-1njw.onrender.com
+   https://tasks-1njw.onrender.com
 
 
 
@@ -53,7 +53,7 @@ https://tasks-1njw.onrender.com
 
 2. Navigate to the app directory:
    ```Terminal
-   cd task-management-app/app
+   cd app
 
 3. Install dependencies:
    ```Terminal
