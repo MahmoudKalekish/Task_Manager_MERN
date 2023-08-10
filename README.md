@@ -30,7 +30,7 @@ The application allows users to manage tasks by providing features for adding, e
    git clone https://github.com/MahmoudKalekish/Task_Manager_MERN.git
 
 2. Navigate to the backend directory:
-```Terminal
+   ```Terminal
    cd task-management-app/backend
 
 3. Install dependencies:
@@ -38,27 +38,29 @@ The application allows users to manage tasks by providing features for adding, e
    npm install
 
 4. Run the backend server:
-```Terminal
+   ```Terminal
    npm run start
 
  ### But no need to run the backend because it is deployed, so you can directly run the frontend.
-```Terminal
+   ```Terminal
 https://tasks-1njw.onrender.com
+
+
 
 ### Frontend
 
 1. Open a new terminal.
 
 2. Navigate to the app directory:
- ```Terminal
+   ```Terminal
    cd task-management-app/app
 
 3. Install dependencies:
-```Terminal
+   ```Terminal
    npm install
 
 
 4. Run the frontend application:
-```Terminal
+   ```Terminal
    npm run dev
 
