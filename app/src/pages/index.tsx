@@ -7,6 +7,8 @@ import LoginForm from '../components/LoginForm';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { TaskFormValues } from '../components/TaskTypes';
+import TaskEditForm from '@/components/TaskEditForm';
+import TaskListItem from '@/components/TaskListItem';
 
 
 
@@ -26,6 +28,8 @@ const HomePage: React.FC = () => {
   const [showLogin, setShowLogin] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
+  const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [editingTask, setEditingTask] = useState<Task | null>(null);
 
 
   const handlePageChange = (newPage: number) => {
@@ -119,13 +123,38 @@ const HomePage: React.FC = () => {
 
   const handleTaskFormSubmit = (newTaskValues: TaskFormValues) => {
     const newTask: Task = {
-      _id: '',
+      // _id: '',
       isCompleted: false,
       ...newTaskValues,
     };
 
     handleAddTask(newTask);
   };
+
+  const handleSaveEditedTask = (updatedTask: TaskFormValues) => {
+    axios.put(`https://tasks-1njw.onrender.com/api/tasks/${updatedTask._id}`, updatedTask, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then(response => {
+        fetchTasks();
+        setIsEditing(false);
+        toast.success('Task updated successfully');
+      })
+      .catch(error => {
+        console.error('Error updating task:', error);
+        toast.error('Error updating task');
+      });
+  };
+
+
+  const handleEditTask = (taskId: string): void => {
+    const taskToEdit = tasks.find(task => task._id === taskId);
+    setEditingTask(taskToEdit || null);
+    setIsEditing(true);
+  };
+
 
 
   return (
@@ -150,17 +179,32 @@ const HomePage: React.FC = () => {
       {token && (
         <div className='pl-10 pt-10'>
           <button className="logout-button" onClick={handleLogout}>Logout</button>
-          <TaskForm
-            onSubmit={handleTaskFormSubmit} />
-          <h2 >Task List</h2>
+          <TaskForm onSubmit={handleTaskFormSubmit} />
+          <h2>Task List</h2>
           <TaskList
             tasks={tasks}
             onMarkCompleted={handleMarkCompleted}
+            onEditTask={handleEditTask}
             onDeleteTask={handleDeleteTask}
             currentPage={currentPage}
             totalPages={totalPages}
             onPageChange={handlePageChange}
+            isEditing={isEditing}
+            editingTask={editingTask}
+            setIsEditing={setIsEditing}
+            handleSaveEditedTask={handleSaveEditedTask}
+            handleEditTask={handleEditTask}
           />
+
+          {isEditing && editingTask && (
+            <TaskEditForm
+              task={editingTask}
+              onCancel={() => setIsEditing(false)}
+              onSave={handleSaveEditedTask}
+              onEditTask={handleEditTask}
+            />
+          )}
+
         </div>
       )}
     </div>

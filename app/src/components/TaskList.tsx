@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import TaskListItem from './TaskListItem';
 import { useSelector } from 'react-redux';
+import { Task } from '@/pages';
+import TaskEditForm from './TaskEditForm';
+import { TaskFormValues } from './TaskTypes';
 
 interface TaskListProps {
   tasks: {
@@ -12,16 +15,28 @@ interface TaskListProps {
   }[];
 
   onMarkCompleted: (taskId: string) => void;
+  onEditTask: (taskId: string) => void;
   onDeleteTask: (taskId: string) => void;
   currentPage: number;
   totalPages: number;
   onPageChange: (newPage: number) => void;
+
+  isEditing: boolean;
+  editingTask: Task | null;
+  setIsEditing: (isEditing: boolean) => void;
+  handleSaveEditedTask: (updatedTask: TaskFormValues) => void;
+  handleEditTask: (taskId: string) => void;
 }
 
 const PAGE_SIZE = 20;
 
 
-const TaskList: React.FC<TaskListProps> = ({ tasks, onMarkCompleted, onDeleteTask, currentPage, totalPages, onPageChange }) => {
+const TaskList: React.FC<TaskListProps> = ({ tasks, onMarkCompleted, onEditTask, onDeleteTask, currentPage, totalPages, onPageChange,
+  isEditing,
+  editingTask,
+  setIsEditing,
+  handleSaveEditedTask,
+  handleEditTask, }) => {
 
   const [sortBy, setSortBy] = useState<'dueDate' | 'completionStatus' | null>(null);
   const [filterCompleted, setFilterCompleted] = useState<boolean | null>(null);
@@ -40,7 +55,7 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, onMarkCompleted, onDeleteTas
   const displayedTasks = filteredTasks.slice(startIndex, startIndex + PAGE_SIZE);
 
   return (
-    <div className="grid gap-4 mt-4">
+    <div className="grid gap-4 mt-4 ">
       <div>
         <label>
           Sort by:
@@ -65,20 +80,33 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, onMarkCompleted, onDeleteTas
             <option value="false">Not Completed</option>
           </select>
         </label>
-      </div>
-      {displayedTasks.length > 0 ? (
-        displayedTasks.map(task => (
-          <TaskListItem
-            key={task._id}
-            task={task}
-            onMarkCompleted={onMarkCompleted}
-            onDeleteTask={onDeleteTask}
-          />
-        ))
-      ) : (
-        <p>No tasks available.</p>
-      )}
 
+      </div>
+      <div className='flex flex-wrap gap-9'>
+        {displayedTasks.length > 0 ? (
+          displayedTasks.map(task => (
+            <div key={task._id}>
+              <TaskListItem
+                task={task}
+                onMarkCompleted={onMarkCompleted}
+                onEditTask={onEditTask}
+                onDeleteTask={onDeleteTask}
+              />
+              {isEditing && editingTask && editingTask._id === task._id && (
+                <TaskEditForm
+                  task={editingTask}
+                  onCancel={() => setIsEditing(false)}
+                  onSave={handleSaveEditedTask}
+                  onEditTask={handleEditTask}
+                />
+              )}
+            </div>
+          ))
+        ) : (
+          <p>No tasks available.</p>
+        )}
+
+      </div>
       <div className="pagination">
         {Array.from({ length: totalPages }, (_, index) => (
           <button

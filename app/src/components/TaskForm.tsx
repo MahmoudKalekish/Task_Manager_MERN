@@ -1,7 +1,7 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { TaskFormValues } from '../components/TaskTypes'; 
+import { TaskFormValues } from '../components/TaskTypes';
 
 interface TaskFormProps {
   onSubmit: (values: TaskFormValues) => void;
@@ -18,6 +18,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ onSubmit }) => {
     title: '',
     description: '',
     dueDate: '',
+    _id: undefined
   };
 
   return (

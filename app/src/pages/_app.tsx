@@ -1,4 +1,3 @@
-// pages/_app.tsx
 import React from 'react';
 import { Provider } from 'react-redux';
 import '../index.css';
@@ -8,7 +7,7 @@ import store from '@/redux/store';
 
 interface AppProps {
   Component: React.FC;
-  pageProps: any; 
+  pageProps: any;
 }
 
 function MyApp({ Component, pageProps }: AppProps) {
